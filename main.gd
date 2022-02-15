@@ -242,6 +242,7 @@ func _draw_next_shape(next_shape: Array,
 	get_tree().call_group("next_shape", "queue_free")
 	for blk in next_shape:
 		blk -= (center + Vector2(0.5, 0.5))
+		# recalculates center of the shape accordingly "real" world demensions
 		var x_origin: float = (display_next.rect_global_position.x + 
 				display_next.rect_size.x / 2)
 		var y_origin: float = (display_next.rect_global_position.y + 
