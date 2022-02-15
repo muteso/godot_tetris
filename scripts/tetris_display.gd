@@ -154,9 +154,9 @@ func row_completing() -> Dictionary:
 		# iterates in reverse order along y-axis thought whole display_matrix
 		ind -= 1
 		
-		if display_matrix[ind].max() == 0: # check row is empty
+		if display_matrix[ind].max() == 0: # checks row is empty
 			return draw_data
-		if display_matrix[ind].min() == 2: # check row is completed
+		if display_matrix[ind].min() == 2: # checks row is completed
 			var completer_row_ind := ind - ind_offset + HEIGHT + BOTTOM
 			# reverses "back" (to positive value) and "shifts" current
 			# index to get completed row index
@@ -168,9 +168,9 @@ func row_completing() -> Dictionary:
 				# iterates in reverse order along y-axis thought whole 
 				# display_matrix started from row above completed row
 				row_ind = -(row_ind + 1) + ind # reverses "above" row index 
-				if display_matrix[row_ind].max() == 0: # check row is empty
+				if display_matrix[row_ind].max() == 0: # checks row is empty
 					break
-				if 2 in display_matrix[row_ind]: # check row is not empty
+				if 2 in display_matrix[row_ind]: # checks row is not empty
 					display_matrix[row_ind + 1] = display_matrix[row_ind]
 					color_matrix[row_ind + 1] = color_matrix[row_ind]
 					display_matrix[row_ind] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
