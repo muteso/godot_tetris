@@ -1,0 +1,57 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "TetrisDisplay",
+"language": "GDScript",
+"path": "res://scripts/tetris_display.gd"
+} ]
+_global_script_class_icons={
+"TetrisDisplay": "res://assets/images/block.png"
+}
+
+[application]
+
+config/name="Tetris"
+run/main_scene="res://main.tscn"
+boot_splash/image="res://icon.png"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+boot_splash/bg_color=Color( 0, 0.6, 0.572549, 1 )
+config/icon="res://icon.png"
+
+[autoload]
+
+Settings="*res://scripts/settings.gd"
+
+[display]
+
+window/size/width=220
+window/size/height=500
+window/dpi/allow_hidpi=true
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[input]
+
+ui_pause={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":80,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/cmpl_row.mp3-efc9777bdd8ab0c82d1ae7a4d3834210.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/cmpl_row.mp3"
+dest_files=[ "res://.import/cmpl_row.mp3-efc9777bdd8ab0c82d1ae7a4d3834210.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
