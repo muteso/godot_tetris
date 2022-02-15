@@ -57,7 +57,7 @@ var shape_color: Color
 # stores color of the falling_shape
 
 var display_matrix: Array
-# represent tetris display with matrix, where each cell have his own condition
+# represents tetris display with matrix, where each cell have his own condition
 # 0 - empty cell
 # 1 - falling block
 # 2 - landed block
@@ -132,7 +132,7 @@ func spawn_shape() -> void:
 	store_shape_in_matrixes(1, shape_color)
 	emit_signal("shape_spawned", SHAPES[next_shape][0], 
 			CENTERS[next_shape], COLORS[next_shape])
-	# run _draw_next_shape() in Main-node
+	# runs _draw_next_shape() in Main-node
 
 
 func row_completing() -> Dictionary:
@@ -145,7 +145,7 @@ func row_completing() -> Dictionary:
 	var ind := -BOTTOM # reversed "cursor" index
 	var end := -(BOTTOM + HEIGHT) # reversed max index (height)
 	var ind_offset := 0 
-	# stores offset of ind-variable after each row completing - its   
+	# stores "shifting" of ind-variable after each row completing - its   
 	# NECESSARY for proper completed rows indexes calculation (chunks 
 	# of "above" blocks IMMEDIATE "shift" down BEFORE each of completed
 	# rows indexes were calculated)
@@ -158,14 +158,16 @@ func row_completing() -> Dictionary:
 			return draw_data
 		if display_matrix[ind].min() == 2: # check row is completed
 			var completer_row_ind := ind - ind_offset + HEIGHT + BOTTOM
+			# reverses "back" (to positive value) and "shifts" current
+			# index to get completed row index
 			draw_data["completed_rows"].append(completer_row_ind)
 			
-			ind_offset += 1
+			ind_offset += 1 # stores "shifting"
 			
 			for row_ind in display_matrix.size():
 				# iterates in reverse order along y-axis thought whole 
 				# display_matrix started from row above completed row
-				row_ind = -(row_ind + 1) + ind # reverse "above" row index 
+				row_ind = -(row_ind + 1) + ind # reverses "above" row index 
 				if display_matrix[row_ind].max() == 0: # check row is empty
 					break
 				if 2 in display_matrix[row_ind]: # check row is not empty
@@ -174,8 +176,7 @@ func row_completing() -> Dictionary:
 					display_matrix[row_ind] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 					color_matrix[row_ind] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 			
-			ind += 1 
-			# shift "cursor" back to check just fallen bottom row
+			ind += 1 # shifts "cursor" back to check just fallen bottom row
 	return draw_data # needed only to avoid parser exception
 
 
@@ -196,7 +197,7 @@ func fall() -> void:
 		if next_pos > 1:
 			store_shape_in_matrixes(2, shape_color)
 			emit_signal("shape_landed", row_completing())
-			# run _landing_process() in Main-node 
+			# runs _landing_process() in Main-node 
 			return
 	store_shape_in_matrixes(0)
 	shape_offset.y += 1

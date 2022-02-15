@@ -108,16 +108,16 @@ func _physics_process(delta: float) -> void:
 # start-end game functions -----------------------------
 
 func _on_GUI_new_game() -> void:
-	$GUI/Layer2/PauseBox.can_pause = true # activate pause "key"
+	$GUI/Layer2/PauseBox.can_pause = true # activates pause "key"
 	
-	if Settings.SHOW_DISPLAY_GRID: # activate grid appearence on display
+	if Settings.SHOW_DISPLAY_GRID: # activates grid appearence on display
 		display.texture = grid
 		display.expand = true
 		display.stretch_mode = 2
 	
-	$Sounds/MainTheme.playing = Settings.PLAY_MUSIC # activate music
+	$Sounds/MainTheme.playing = Settings.PLAY_MUSIC # activates music
 	
-	if Settings.PLAY_SOUNDS: # activate sounds
+	if Settings.PLAY_SOUNDS: # activates sounds
 		beep_play.stream = beep_snd
 		cmpl_row_play.stream = cmpl_row_snd
 		drop_play.stream = drop_snd
@@ -126,15 +126,15 @@ func _on_GUI_new_game() -> void:
 		cmpl_row_play.stream = null
 		drop_play.stream = null
 	
-	self.level += 1 # trigger level-value setter-function
+	self.level += 1 # triggers level-value setter-function
 	
-	time = Timer.new() # create necessary timer-object
+	time = Timer.new() # creates necessary timer-object
 	add_child(time)
 	time.connect("timeout", self, "_update_display_on_timeout")
 	
 	time.start(velocity)
 	
-	tetris = TetrisDisplay.new() # create necessary custom tetris-object
+	tetris = TetrisDisplay.new() # creates necessary custom tetris-object
 	add_child(tetris)
 	tetris.connect("shape_spawned", self, "_draw_next_shape")
 	tetris.connect("shape_landed", self, "_landing_process")
@@ -163,16 +163,16 @@ func _landing_process(draw_data: Dictionary) -> void:
 		cmpl_row_play.play(0)
 		
 		self.completing_processing = true
-		# "interrupt" _update_display_on_timeout()-function via setter-
+		# "interrupts" _update_display_on_timeout()-function via setter-
 		# function right before draw_display()-function call 
 		
 		draw_display(draw_data["matrix"], false)
-		# draw displays snapshot BEFORE the actual rows "completing"
+		# draws displays snapshot BEFORE the actual rows "completing"
 		yield(draw_vanish_anim(draw_data["completed_rows"]), "completed")
-		# draw rows "completing"-animation
+		# draws rows "completing"-animation
 		
 		self.completing_processing = false
-		# resume normal drawing behavior via setter-function
+		# resumes normal drawing behavior via setter-function
 		
 		cmpl_row_play.stop()
 		
@@ -233,7 +233,7 @@ func draw_display(matrix: Array=tetris.get_matrix_to_draw(),
 			var y_origin: float = display.rect_position.y
 			var color := Color(1, 1, 1, 0.3)
 			if y_origin <= y_origin + y * BLOCK: 
-				# draw blocks only inside GUI-display
+				# draws blocks only inside GUI-display
 				draw_block("blocks", x_origin, y_origin, x, y, color)
 
 
