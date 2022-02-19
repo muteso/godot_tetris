@@ -21,13 +21,13 @@ func _ready() -> void:
 	animation.play("start_box_appear")
 
 func sync_settings() -> void:
-	shadow_but.pressed = Settings.SHOW_SHADOW
-	grid_but.pressed = Settings.SHOW_DISPLAY_GRID
-	music_but.pressed = Settings.PLAY_MUSIC
-	sounds_but.pressed = Settings.PLAY_SOUNDS
-	first.text = "1-st place - " + str(Settings.HIGH_SCORE_TABLE["1st"])
-	second.text = "2-nd place - " + str(Settings.HIGH_SCORE_TABLE["2nd"])
-	third.text = "3-rd place - " + str(Settings.HIGH_SCORE_TABLE["3rd"])
+	shadow_but.pressed = Settings.show_shadow
+	grid_but.pressed = Settings.show_display_grid
+	music_but.pressed = Settings.play_music
+	sounds_but.pressed = Settings.play_sounds
+	first.text = "1-st place - " + str(Settings.high_score_table["1st"])
+	second.text = "2-nd place - " + str(Settings.high_score_table["2nd"])
+	third.text = "3-rd place - " + str(Settings.high_score_table["3rd"])
 
 
 func _on_Play_button_up() -> void:
@@ -36,20 +36,20 @@ func _on_Play_button_up() -> void:
 
 
 func _on_SHOW_SHADOW_toggled(button_pressed: bool) -> void:
-	Settings.SHOW_SHADOW = button_pressed
+	Settings.show_shadow = button_pressed
 	Settings.save_settings()
 
 
 func _on_SHOW_GRID_toggled(button_pressed: bool) -> void:
-	Settings.SHOW_DISPLAY_GRID = button_pressed
+	Settings.show_display_grid = button_pressed
 	Settings.save_settings()
 
 
 func _on_PLAY_MUSIC_toggled(button_pressed: bool) -> void:
-	Settings.PLAY_MUSIC = button_pressed
+	Settings.play_music = button_pressed
 	Settings.save_settings()
 
 
 func _on_PLAY_SOUNDS_toggled(button_pressed: bool):
-	Settings.PLAY_SOUNDS = button_pressed
+	Settings.play_sounds = button_pressed
 	Settings.save_settings()

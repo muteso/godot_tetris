@@ -110,14 +110,14 @@ func _physics_process(delta: float) -> void:
 func _on_GUI_new_game() -> void:
 	$GUI/Layer2/PauseBox.can_pause = true # activates pause "key"
 	
-	if Settings.SHOW_DISPLAY_GRID: # activates grid appearence on display
+	if Settings.show_display_grid: # activates grid appearence on display
 		display.texture = grid
 		display.expand = true
 		display.stretch_mode = 2
 	
-	$Sounds/MainTheme.playing = Settings.PLAY_MUSIC # activates music
+	$Sounds/MainTheme.playing = Settings.play_music # activates music
 	
-	if Settings.PLAY_SOUNDS: # activates sounds
+	if Settings.play_sounds: # activates sounds
 		beep_play.stream = beep_snd
 		cmpl_row_play.stream = cmpl_row_snd
 		drop_play.stream = drop_snd
@@ -224,7 +224,7 @@ func draw_display(matrix: Array=tetris.get_matrix_to_draw(),
 				var y_origin: float = display.rect_position.y
 				var color: Color = matrix[y_ind][x_ind]["color"]
 				draw_block("blocks", x_origin, y_origin, x_ind, y_ind, color)
-	if Settings.SHOW_SHADOW and draw_shadow:
+	if Settings.show_shadow and draw_shadow:
 		var shape: Array = tetris.falling_shape[tetris.shape_rotation]
 		for blk in shape:
 			var x: float = tetris.shape_offset.x + blk.x
