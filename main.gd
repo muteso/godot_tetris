@@ -166,9 +166,7 @@ func _landing_process(draw_data: Dictionary) -> void:
 		# "interrupts" _update_display_on_timeout()-function via setter-
 		# function right before draw_display()-function call 
 		
-		draw_display(draw_data["matrix"], false)
-		# draws displays snapshot BEFORE the actual rows "completing"
-		yield(draw_vanish_anim(draw_data["completed_rows"]), "completed")
+		yield(draw_vanish_anim(draw_data), "completed")
 		# draws rows "completing"-animation
 		
 		self.completing_processing = false
@@ -250,8 +248,12 @@ func _draw_next_shape(next_shape: Array,
 		draw_block("next_shape", x_origin, y_origin, blk.x, blk.y, color)
 
 
-func draw_vanish_anim(completed_rows: Array) -> void:
+func draw_vanish_anim(draw_data: Dictionary) -> void:
+	draw_display(draw_data["matrix"], false)
+	
 	yield(get_tree(), "idle_frame") # needed for "yielding" this function
+	
+	var completed_rows: Array = draw_data["completed_rows"]
 	var blocks := get_tree().get_nodes_in_group("blocks")
 	for local_x in tetris.WIDTH:
 		for local_y in completed_rows:
